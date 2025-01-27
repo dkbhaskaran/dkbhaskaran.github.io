@@ -38,75 +38,79 @@ Let's consider a class, **`SharedResource`**, that demonstrates **shared ownersh
 ### Code implementation:
 
 ```cpp
+#include <string>
+#include <iostream>
+#include <atomic>
+
 class SharedResource {
 public:
-    // Constructor: Initialize with a name and set reference count to 1
-    SharedResource(const std::string& resourceName)
-        : name(resourceName), referenceCount(new std::atomic<int>(1)) {}
+  // Constructor: Initialize with a name and set reference count to 1
+  SharedResource(const std::string &resourceName)
+      : name(resourceName), referenceCount(new std::atomic<int>(1)) {}
 
-    // Destructor: Decrement reference count and delete when it reaches 0
-    ~SharedResource() {
-        releaseReferenceCount();
-    }
+  // Destructor: Decrement reference count and delete when it reaches 0
+  ~SharedResource() { releaseReferenceCount(); }
 
-    // Copy Constructor: Increment reference count
-    SharedResource(const SharedResource& other)
-        : name(other.name), referenceCount(other.referenceCount) {
-        ++(*referenceCount);
-        std::cout << name << " : Copy constructor, refCount: " << *referenceCount << std::endl;
-    }
+  // Copy Constructor: Increment reference count
+  SharedResource(const SharedResource &other)
+      : name(other.name), referenceCount(other.referenceCount) {
+    ++(*referenceCount);
+    std::cout << name << " : Copy constructor, refCount: " << *referenceCount
+              << std::endl;
+  }
 
-    // Copy Assignment Operator: Decrement old reference count, copy new reference
-    SharedResource& operator=(const SharedResource& other) {
-        if (this == &other) return *this;  // Handle self-assignment
+  // Copy Assignment Operator: Decrement old reference count, copy new reference
+  SharedResource &operator=(const SharedResource &other) {
+    if (this == &other)
+      return *this; // Handle self-assignment
 
-        releaseReferenceCount();
+    releaseReferenceCount();
 
-        referenceCount = other.referenceCount;
-        name = other.name;
-        ++(*referenceCount);
-        std::cout << name << " : Copy assignment, refCount: " << *referenceCount << std::endl;
-        return *this;
-    }
+    referenceCount = other.referenceCount;
+    name = other.name;
+    ++(*referenceCount);
+    std::cout << name << " : Copy assignment, refCount: " << *referenceCount
+              << std::endl;
+    return *this;
+  }
 
-    // Move Constructor: Transfer reference count ownership
-    SharedResource(SharedResource&& other) noexcept
-        : name(std::move(other.name)), referenceCount(other.referenceCount) {
-        other.referenceCount = nullptr;
-        std::cout << name << " : Move constructor, refCount: " << *referenceCount << std::endl;
-    }
+  // Move Constructor: Transfer reference count ownership
+  SharedResource(SharedResource &&other) noexcept
+      : name(std::move(other.name)), referenceCount(other.referenceCount) {
+    other.referenceCount = nullptr;
+    std::cout << name << " : Move constructor, refCount: " << *referenceCount
+              << std::endl;
+  }
 
-    // Move Assignment Operator: Transfer reference count ownership
-    SharedResource& operator=(SharedResource&& other) noexcept {
-        if (this == &other) return *this;  // Handle self-assignment
+  // Move Assignment Operator: Transfer reference count ownership
+  SharedResource &operator=(SharedResource &&other) noexcept {
+    if (this == &other)
+      return *this; // Handle self-assignment
 
-        releaseReferenceCount();
+    releaseReferenceCount();
 
-        referenceCount = other.referenceCount;
-        name = std::move(other.name);
-        other.referenceCount = nullptr;
-        std::cout << name << " : Move assignment, refCount: " << *referenceCount << std::endl;
-        return *this;
-    }
+    referenceCount = other.referenceCount;
+    name = std::move(other.name);
+    other.referenceCount = nullptr;
+    std::cout << name << " : Move assignment, refCount: " << *referenceCount
+              << std::endl;
+    return *this;
+  }
 
 private:
-    // Helper function to decrement reference count
-    void releaseReferenceCount() {
-        if (referenceCount && referenceCount->fetch_sub(1) == 1) {
-            delete referenceCount;
-            referenceCount = nullptr;
-            std::cout << "Reference count deleted" << std::endl;
-        }
+  // Helper function to decrement reference count
+  void releaseReferenceCount() {
+    if (referenceCount && referenceCount->fetch_sub(1) == 1) {
+      delete referenceCount;
+      referenceCount = nullptr;
+      std::cout << "Reference count deleted" << std::endl;
     }
+  }
 
-    std::string name;               // The name of the resource
-    std::atomic<int>* referenceCount; // Reference count (shared among instances)
+  std::string name;                 // The name of the resource
+  std::atomic<int> *referenceCount; // Reference count (shared among instances)
 };
 ```
-
-
-
-
 
 ### Some Notable Details:
 
