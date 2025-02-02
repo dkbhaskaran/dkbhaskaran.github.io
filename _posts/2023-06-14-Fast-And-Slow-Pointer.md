@@ -130,7 +130,7 @@ Let’s assume that the linked list has a cycle, and the cycle starts after **X*
 - **Y** is the number of nodes the slow pointer travels before it enters the loop.
 - **Z** is the length of the remaining cycle.
 
-![Cycle Illustration](./images/2023-06-14-Fast-And-Slow-Pointer_1.png)
+![Cycle Illustration Diagram](/assets/images/2023-06-14-Fast-And-Slow-Pointer_1.png)
 When the slow pointer has moved **X + Y** nodes, the fast pointer has traveled **X + (Y + Z) + Y** nodes, as it covers the cycle twice as fast.
 
 Using this equation:
