@@ -149,11 +149,14 @@ Y + Z = X + Y
 ```
 
 This means the fast pointer and slow pointer will meet X nodes before the start of the cycle, a crucial observation about the algorithm.
-Generalization to Any Speed
 
-What happens if the fast pointer moves faster? Suppose the fast pointer moves k times faster than the slow pointer. After the slow pointer makes one complete revolution of the cycle, the fast pointer would have made k revolutions.
+## Generalizing the Scenario
 
-Now, the distance traveled by both pointers can be represented as:
+Let's generalize the scenario. Suppose the fast pointer moves **k** times faster than the slow pointer. In this case, the slow and fast pointers will complete **m** and **n** rotations around the loop, respectively, with **n > m**. To set the stage, assume that when the slow pointer enters the loop, the fast pointer is at some arbitrary position, denoted as **i**.
+
+As the slow pointer completes one full revolution of the loop in time **T = X + Y** (where each step takes 1 unit of time), the fast pointer would have traveled **k * (X + Y)**, which corresponds to **k** full rotations. By this time, the fast pointer will have returned to position **i**, the same position where it started.
+
+Thus, both pointers would have arrived at their starting position after one full revolution. Therefore, it is reasonable to assume that if they meet during the first revolution of the slow pointer, they will continue to meet at the same point in subsequent revolutions. If they don’t meet during the first revolution, they will never meet at all. Now for the first revolution, let assume the speed of fast pointer is **k** and fast pointer revolves n times before catching up, we can represent the distance traveled by both pointers as:
 
     Slow pointer: X + Y
     Fast pointer: X + n(Y + Z) + Y
@@ -174,7 +177,4 @@ Since Y + Z represents the length of the cycle, it can be removed from the equat
 
 ## Conclusion: The Meeting Point
 
-The important takeaway here is that regardless of the speed of the fast pointer (whether it moves 2x, 3x, or k times faster than the slow pointer), the slow and fast pointers will always meet at the same point after one full revolution of the slow pointer in the cycle. This means the time taken for both pointers to meet is the same, irrespective of the fast pointer's speed.
-
-Thus, the meeting point will always occur after the slow pointer has completed one full cycle, and it will always be at the same position in the cycle, regardless of the speed ratio between the two pointers.
-
+The key takeaway is that, regardless of how much faster the fast pointer moves compared to the slow pointer (whether 2x, 3x, or k times faster), the slow and fast pointers will always meet at the same point within the first revolution of the slow pointer around the cycle. This means that the time taken for both pointers to meet is same, regardless of the fast pointer's speed. Ultimately, the meeting point occurs at a distance of X, which is the distance from the start of the linked list to the beginning of the cycle.
