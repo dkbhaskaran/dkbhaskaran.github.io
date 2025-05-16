@@ -20,5 +20,4 @@ Compiler Design · Parallel Programming · Linux Kernel · Storage Systems
 
 ---
 
-### 📥 [Download Full Resume (PDF)](https://example.com/bhaskaran-resume.pdf)
-
+### 📥 [Download Full Resume (PDF)](/assets/pdf/resume.pdf)
