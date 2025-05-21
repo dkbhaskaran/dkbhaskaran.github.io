@@ -10,4 +10,4 @@ When I’m not buried in performance tuning or chasing down the last bit of late
 
 Currently calling Canada home. I’ve always had a deep fascination for math and physics — the kind of stuff that makes your head hurt in the best way possible.
 
-This blog is a mix of my work, thoughts, and the occasional rabbit hole I fall into. Thanks for stopping by 🙌
+This blog is a mix of my work, thoughts, and the occasional rabbit hole that I fall into. Thanks for stopping by 🙌
