@@ -3,7 +3,6 @@ title : "A peek into Artificial intelligence - Part 1"
 date: 2025-05-14
 categories: [AI/ML, Python, pytorch ]
 tags: [ Neural networks, pytorch ]
-pin : true
 ---
 
 Introduction

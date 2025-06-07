@@ -3,7 +3,6 @@ title : "Electrifying your terminal with AI"
 date: 2025-05-22
 categories: [AI/ML, Terminal ]
 tags: [ Zsh, Neovim, Ollama ]
-pin : true
 ---
 I spend most of my day working right in the terminal—whether I’m writing code, listening to music, or jotting down notes (you’re reading one of those notes right now). My setup is pretty classic: Zsh + tmux + Neovim on Ubuntu 24.04.2 LTS, running on a Dell G15 5315 with an NVIDIA GeForce RTX 4050. You can peek at all my configuration files over on my GitHub: [dotfiles](https://github.com/dkbhaskaran/dotfiles).
 

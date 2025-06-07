@@ -3,7 +3,6 @@ title : "Recursion Pattern : To Take or Don't Take"
 date: 2023-06-21
 categories: [Algorithms, Python ]
 tags: [ Take or Don't take, Recursion pattern ]
-pin : true
 ---
 
 Here we will be discussing a recursive template for solving problems related to subsequence generation or power set generation. Generally speaking, this is a variant of the backtracking pattern, where we generate a subsequence out of the input sequence by iterating through each index and deciding whether to "Take" or "Don't Take" the element at that index.
